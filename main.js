@@ -41,9 +41,9 @@ function createForm() {
         label.textContent = labelText;
     
         const input = document.createElement("input");
+        input.name = placeholder;
         input.type = type;
         input.placholder = placeholder;
-    
         wrapper.append(label, input)
         return wrapper;
     }
@@ -72,6 +72,7 @@ function createForm() {
     const button = document.createElement("button");
     button.classList = "form-button"
     button.textContent = "Add";
+    button.type = "submit";
     form.appendChild(button);
     
     // append form to page
@@ -84,12 +85,26 @@ function createForm() {
         addBookButton.classList.toggle("hidden");
     })
 
+    // Listener for form on submit
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(formData.get("title"))
+
+        const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"));
+        console.log("the book is:", bookToBeAdded)
+        addBookToLibrary(bookToBeAdded);
+    })
+
 
 }
 
 // create function that takes arguments, creates book, and stores book in array
-function addBookToLibrary(title, author, pages, isRead) {
-    console.log(title)
+function addBookToLibrary(book) {
+    console.log("the book that adds to lib:", book)
+    myLibrary.push(book)
+    console.log(myLibrary)
 }
 
 // create function that loops through library array and displays books in DOM
@@ -107,5 +122,4 @@ addBookButton.addEventListener("click", function() {
     }
 })
 
-addBookToLibrary("test", "test", 24, false);
 displayBooks();
