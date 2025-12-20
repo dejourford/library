@@ -92,10 +92,8 @@ function createForm() {
         e.preventDefault();
 
         const formData = new FormData(form);
-        console.log(formData.get("title"))
 
         const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"), formData.get("isRead") === "on");
-        console.log("the book is:", bookToBeAdded)
         addBookToLibrary(bookToBeAdded);
     })
 
@@ -116,7 +114,6 @@ function displayBooks() {
 
 
 addBookButton.addEventListener("click", function() {
-    console.log("book added")
     const bookForm = document.querySelector(".book-form");
     if (!bookForm) {
         addBookButton.classList.add("hidden");
