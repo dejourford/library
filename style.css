@@ -72,6 +72,7 @@ footer {
     transform: translate(-50%, -50%);
 }
 
+/* Media Queries */
 @media screen and (min-width: 769px) {
     
     /* Books Section */
