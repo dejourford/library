@@ -27,6 +27,16 @@ form {
     padding: 1rem;
     max-width: 500px;
     margin: 0 auto;
+    position: relative;
+}
+
+#close-form-button {
+    position: absolute;
+    right: 25px;
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .form-title {
@@ -56,18 +66,30 @@ form input {
     width: unset;
 }
 
-button {
-    margin-top: 1rem;
-    width: 40%;
-    padding: 0.2rem;
+.isReadCheckbox {
+    cursor: pointer;
 }
 
-/* Add Book Button */
-#addBookButton {
+.form-button {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+    margin-top: 1rem;
+    width: 40%;
+    padding: 0.2rem;
+    cursor: pointer;
+}
+
+/* Add Book Button */
+#addBookButton {
+    width: 30%;
+    background: none;
+    border-radius: 0.3rem;
+}
+
+#addBookButton.hidden  {
+    display: none;
 }
 
 /* Footer */

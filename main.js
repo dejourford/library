@@ -20,6 +20,12 @@ function createForm() {
     const form = document.createElement("form");
     form.className = "book-form";
 
+    // Form Close Button
+    const formCloseButton = document.createElement("button");
+    formCloseButton.id = "close-form-button";
+    formCloseButton.textContent = "X";
+    form.appendChild(formCloseButton);
+
     // Title
     const titleHeading = document.createElement("h2");
     titleHeading.className = "form-title";
@@ -42,7 +48,7 @@ function createForm() {
         return wrapper;
     }
     
-    // Title input
+    // Form Inputs
     form.appendChild(createFormItem("Title", "text", "title"));
     form.appendChild(createFormItem("Author", "text", "author"));
     form.appendChild(createFormItem("Pages", "number", "pages"));
@@ -56,6 +62,7 @@ function createForm() {
     readLabel.textContent = "Read?";
     
     const readCheckbox = document.createElement("input");
+    readCheckbox.classList = "isReadCheckbox";
     readCheckbox.type = "checkbox";
     
     readWrapper.append(readLabel, readCheckbox);
@@ -63,11 +70,21 @@ function createForm() {
     
     // Button
     const button = document.createElement("button");
-    button.textContent = "Test";
+    button.classList = "form-button"
+    button.textContent = "Add";
     form.appendChild(button);
     
     // append form to page
     mainSection.append(form);
+
+    // Listener for close button
+    formCloseButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        form.remove();
+        addBookButton.classList.toggle("hidden");
+    })
+
+
 }
 
 // create function that takes arguments, creates book, and stores book in array
@@ -83,7 +100,11 @@ function displayBooks() {
 
 addBookButton.addEventListener("click", function() {
     console.log("book added")
-    document.querySelector(".book-form") ?? createForm()
+    const bookForm = document.querySelector(".book-form");
+    if (!bookForm) {
+        addBookButton.classList.add("hidden");
+        createForm()
+    }
 })
 
 addBookToLibrary("test", "test", 24, false);
