@@ -1,4 +1,6 @@
 const booksSection = document.querySelector(".books-section");
+const addBookButton = document.querySelector("#addBookButton");
+const mainSection = document.querySelector("main");
 const myLibrary = [];
 
 
@@ -13,6 +15,61 @@ class Book {
 }
 
 
+//  CREATE DYNAMIC FORM TO ADD/REMOVE BOOKS
+function createForm() {
+    const form = document.createElement("form");
+    form.className = "book-form";
+
+    // Title
+    const titleHeading = document.createElement("h2");
+    titleHeading.className = "form-title";
+    titleHeading.textContent = "Enter book information:";
+    form.appendChild(titleHeading);
+    
+    // Helper function for text/number inputs
+    function createFormItem(labelText, type, placeholder) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "form-item";
+    
+        const label = document.createElement("label");
+        label.textContent = labelText;
+    
+        const input = document.createElement("input");
+        input.type = type;
+        input.placholder = placeholder;
+    
+        wrapper.append(label, input)
+        return wrapper;
+    }
+    
+    // Title input
+    form.appendChild(createFormItem("Title", "text", "title"));
+    form.appendChild(createFormItem("Author", "text", "author"));
+    form.appendChild(createFormItem("Pages", "number", "pages"));
+    
+    // isRead checkbox
+    const readWrapper = document.createElement("div");
+    readWrapper.className = "form-item";
+    readWrapper.id = "isRead";
+    
+    const readLabel = document.createElement("label");
+    readLabel.textContent = "Read?";
+    
+    const readCheckbox = document.createElement("input");
+    readCheckbox.type = "checkbox";
+    
+    readWrapper.append(readLabel, readCheckbox);
+    form.appendChild(readWrapper);
+    
+    // Button
+    const button = document.createElement("button");
+    button.textContent = "Test";
+    form.appendChild(button);
+    
+    // append form to page
+    mainSection.append(form);
+}
+
 // create function that takes arguments, creates book, and stores book in array
 function addBookToLibrary(title, author, pages, isRead) {
     console.log(title)
@@ -20,9 +77,14 @@ function addBookToLibrary(title, author, pages, isRead) {
 
 // create function that loops through library array and displays books in DOM
 function displayBooks() {
-    
+
 }
 
+
+addBookButton.addEventListener("click", function() {
+    console.log("book added")
+    document.querySelector(".book-form") ?? createForm()
+})
 
 addBookToLibrary("test", "test", 24, false);
 displayBooks();
