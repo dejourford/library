@@ -6,11 +6,12 @@ const myLibrary = [];
 
 // create constructor for book
 class Book {
-    constructor(title, author, pages) {
+    constructor(title, author, pages, read) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.read = read;
     }
 }
 
@@ -64,7 +65,8 @@ function createForm() {
     const readCheckbox = document.createElement("input");
     readCheckbox.classList = "isReadCheckbox";
     readCheckbox.type = "checkbox";
-    
+    readCheckbox.name = "isRead";
+
     readWrapper.append(readLabel, readCheckbox);
     form.appendChild(readWrapper);
     
@@ -92,7 +94,7 @@ function createForm() {
         const formData = new FormData(form);
         console.log(formData.get("title"))
 
-        const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"));
+        const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"), formData.get("isRead") === "on");
         console.log("the book is:", bookToBeAdded)
         addBookToLibrary(bookToBeAdded);
     })
