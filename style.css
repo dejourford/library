@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+}
+
+.books-section {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    left: 50%;     
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 769px) {
+    
+    /* Books Section */
+    .books-section {
+        flex-direction: row;
+    }
+}
