@@ -96,6 +96,10 @@ function createForm() {
         const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"), formData.get("isRead") === "on");
         addBookToLibrary(bookToBeAdded);
         displayBooks(myLibrary);
+
+        // remove form from DOM and remove hidden class from add book button
+        form.remove();
+        addBookButton.classList.toggle("hidden");
     })
 
 
