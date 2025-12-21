@@ -95,6 +95,7 @@ function createForm() {
 
         const bookToBeAdded = new Book(formData.get("title"), formData.get("author"), formData.get("pages"), formData.get("isRead") === "on");
         addBookToLibrary(bookToBeAdded);
+        displayBooks(myLibrary);
     })
 
 
@@ -107,9 +108,31 @@ function addBookToLibrary(book) {
     console.log(myLibrary)
 }
 
-// create function that loops through library array and displays books in DOM
-function displayBooks() {
+// create function that loops through library array and creates 
+// and displays books in DOM
+function displayBooks(booksArray) {
+    console.log("dispaly will be:", myLibrary)
 
+    booksArray.forEach((book) => {
+        const bookItem = document.createElement("div");
+        bookItem.classList = "book-item";
+    
+        const bookTitle = document.createElement("p");
+        bookTitle.id = "book-title";
+        bookTitle.textContent = book.title;
+    
+        const bookAuthor = document.createElement("p");
+        bookAuthor.id = "book-author";
+        bookAuthor.textContent = book.author;
+
+        const bookPages = document.createElement("p");
+        bookPages.id = "book-pages";
+        bookPages.textContent = book.pages;
+
+        bookItem.append(bookTitle, bookAuthor, bookPages)
+        booksSection.appendChild(bookItem)
+    })
+    
 }
 
 
@@ -121,4 +144,3 @@ addBookButton.addEventListener("click", function() {
     }
 })
 
-displayBooks();
