@@ -113,6 +113,9 @@ function addBookToLibrary(book) {
 function displayBooks(booksArray) {
     console.log("dispaly will be:", myLibrary)
 
+    // Clear DOM of previous items before adding new ones
+    booksSection.innerHTML = ""
+
     booksArray.forEach((book) => {
         const bookItem = document.createElement("div");
         bookItem.classList = "book-item";
@@ -135,7 +138,7 @@ function displayBooks(booksArray) {
     
 }
 
-
+// Listener for add book button
 addBookButton.addEventListener("click", function() {
     const bookForm = document.querySelector(".book-form");
     if (!bookForm) {
