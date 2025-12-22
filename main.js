@@ -122,7 +122,6 @@ function addBookToLibrary(book) {
 // create function that loops through library array and creates 
 // and displays books in DOM
 function displayBooks(booksArray) {
-    console.log("dispaly will be:", myLibrary)
 
     // Clear DOM of previous items before adding new ones
     booksSection.innerHTML = ""
@@ -130,6 +129,7 @@ function displayBooks(booksArray) {
     booksArray.forEach((book) => {
         const bookItem = document.createElement("div");
         bookItem.classList = "book-item";
+        bookItem.dataset.id = book.id;
 
         const bookInfo = document.createElement("div");
 
