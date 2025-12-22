@@ -1,7 +1,7 @@
 const booksSection = document.querySelector(".books-section");
 const addBookButton = document.querySelector("#addBookButton");
 const mainSection = document.querySelector("main");
-const myLibrary = [];
+let myLibrary = [];
 
 
 // create constructor for book
@@ -157,9 +157,25 @@ function displayBooks(booksArray) {
         bookInfo.append(bookTitle, bookAuthor, bookPages);
         bookItem.append(bookInfo, bookActions);
         booksSection.appendChild(bookItem);
+
+
+        // event listener for the remove button on each book
+        removeButton.addEventListener("click", function(e){
+            e.preventDefault();
+
+            removeBookFromLibrary(book);
+            displayBooks(myLibrary);
+        })
+
     })
 
 }
+
+// create function to remove book from library on click
+function removeBookFromLibrary(book) {
+    myLibrary =  myLibrary.filter((item) => item.id !== book.id)
+}
+
 
 // Listener for add book button
 addBookButton.addEventListener("click", function () {
