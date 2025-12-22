@@ -119,6 +119,11 @@ function addBookToLibrary(book) {
     console.log(myLibrary)
 }
 
+// create function to remove book from library on click
+function removeBookFromLibrary(book) {
+    myLibrary =  myLibrary.filter((item) => item.id !== book.id)
+}
+
 // create function that loops through library array and creates 
 // and displays books in DOM
 function displayBooks(booksArray) {
@@ -129,7 +134,13 @@ function displayBooks(booksArray) {
     booksArray.forEach((book) => {
         const bookItem = document.createElement("div");
         bookItem.classList = "book-item";
-        bookItem.dataset.id = book.id;
+        bookItem.dataset.isRead = book.read;
+
+        // add green border to book item if dataset-read === true
+        if (book.read) {
+            bookItem.classList.add("is-read");
+        }
+
 
         const bookInfo = document.createElement("div");
 
@@ -170,12 +181,6 @@ function displayBooks(booksArray) {
     })
 
 }
-
-// create function to remove book from library on click
-function removeBookFromLibrary(book) {
-    myLibrary =  myLibrary.filter((item) => item.id !== book.id)
-}
-
 
 // Listener for add book button
 addBookButton.addEventListener("click", function () {
