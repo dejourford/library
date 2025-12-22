@@ -131,6 +131,8 @@ function displayBooks(booksArray) {
         const bookItem = document.createElement("div");
         bookItem.classList = "book-item";
 
+        const bookInfo = document.createElement("div");
+
         const bookTitle = document.createElement("p");
         bookTitle.id = "book-title";
         bookTitle.textContent = book.title;
@@ -143,8 +145,18 @@ function displayBooks(booksArray) {
         bookPages.id = "book-pages";
         bookPages.textContent = book.pages;
 
-        bookItem.append(bookTitle, bookAuthor, bookPages)
-        booksSection.appendChild(bookItem)
+        const bookActions = document.createElement("div");
+        bookActions.classList = "book-actions";
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        bookActions.append(editButton, removeButton)
+
+
+        bookInfo.append(bookTitle, bookAuthor, bookPages);
+        bookItem.append(bookInfo, bookActions);
+        booksSection.appendChild(bookItem);
     })
 
 }
