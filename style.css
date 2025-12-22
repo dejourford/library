@@ -109,21 +109,13 @@ form input {
     font-size: 1.4rem;
 }
 
-
-/* Footer */
-footer {
-    position: absolute;
-    bottom: 0;
-    margin: 0 auto;
-    left: 50%;     
-    transform: translate(-50%, -50%);
-}
-
 /* Media Queries */
 @media screen and (min-width: 769px) {
     
     /* Books Section */
     .books-section {
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
