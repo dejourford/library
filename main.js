@@ -17,7 +17,11 @@ class Book {
 
 
 //  CREATE DYNAMIC FORM TO ADD/REMOVE BOOKS
-function createForm() {
+function createForm(editItem) {
+    if (editItem) {
+     console.log(editItem)   
+    }
+    
     const form = document.createElement("form");
     form.className = "book-form";
 
@@ -45,6 +49,7 @@ function createForm() {
         input.name = placeholder;
         input.type = type;
         input.placholder = placeholder;
+
         wrapper.append(label, input)
         return wrapper;
     }
@@ -53,6 +58,20 @@ function createForm() {
     form.appendChild(createFormItem("Title", "text", "title"));
     form.appendChild(createFormItem("Author", "text", "author"));
     form.appendChild(createFormItem("Pages", "number", "pages"));
+
+    // Input text upon editing
+    if (editItem) {
+        const titleInput = form.querySelector('input[name="title"]');
+        const authorInput = form.querySelector('input[name="author"]');
+        const pagesInput = form.querySelector('input[name="pages"]');
+        const readInput = form.querySelector('input[name="isRead"]');
+
+
+        titleInput.value = editItem.querySelector(".book-title").textContent
+        authorInput.value = editItem.querySelector(".book-author").textContent
+        pagesInput.value = editItem.querySelector(".book-pages").textContent
+        readInput.checked = editItem.dataset.isRead === "true";
+    }
 
     // isRead checkbox
     const readWrapper = document.createElement("div");
@@ -145,15 +164,15 @@ function displayBooks(booksArray) {
         const bookInfo = document.createElement("div");
 
         const bookTitle = document.createElement("p");
-        bookTitle.id = "book-title";
+        bookTitle.classList = "book-title";
         bookTitle.textContent = book.title;
 
         const bookAuthor = document.createElement("p");
-        bookAuthor.id = "book-author";
+        bookAuthor.classList = "book-author";
         bookAuthor.textContent = book.author;
 
         const bookPages = document.createElement("p");
-        bookPages.id = "book-pages";
+        bookPages.classList = "book-pages";
         bookPages.textContent = book.pages;
 
         const bookActions = document.createElement("div");
@@ -189,7 +208,7 @@ function displayBooks(booksArray) {
 
             const form = document.querySelector("form");
             if (!form) {
-                createForm();
+                createForm(e.target.closest(".book-item"));
             }
         })
 
