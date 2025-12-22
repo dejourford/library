@@ -84,7 +84,7 @@ function createForm() {
     formCloseButton.addEventListener("click", function (e) {
         e.preventDefault();
         form.remove();
-        addBookButton.classList.toggle("hidden");
+        addBookButton.classList.remove("hidden");
     })
 
     // Listener for form on submit
@@ -106,7 +106,7 @@ function createForm() {
 
         // remove form from DOM and remove hidden class from add book button
         form.remove();
-        addBookButton.classList.toggle("hidden");
+        addBookButton.classList.remove("hidden");
     })
 
 
@@ -174,8 +174,23 @@ function displayBooks(booksArray) {
         removeButton.addEventListener("click", function(e){
             e.preventDefault();
 
+            const form = document.querySelector("form");
+            if (form) {
+                return
+            }
+
             removeBookFromLibrary(book);
             displayBooks(myLibrary);
+        })
+
+        // event listener for the edit button on each book
+        editButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            const form = document.querySelector("form");
+            if (!form) {
+                createForm();
+            }
         })
 
     })
@@ -184,8 +199,8 @@ function displayBooks(booksArray) {
 
 // Listener for add book button
 addBookButton.addEventListener("click", function () {
-    const bookForm = document.querySelector(".book-form");
-    if (!bookForm) {
+    const form = document.querySelector("form");
+    if (!form) {
         addBookButton.classList.add("hidden");
         createForm()
     }
