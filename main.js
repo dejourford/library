@@ -19,9 +19,9 @@ class Book {
 //  CREATE DYNAMIC FORM TO ADD/REMOVE BOOKS
 function createForm(editItem) {
     if (editItem) {
-     console.log(editItem)   
+        console.log(editItem)
     }
-    
+
     const form = document.createElement("form");
     form.className = "book-form";
 
@@ -59,20 +59,6 @@ function createForm(editItem) {
     form.appendChild(createFormItem("Author", "text", "author"));
     form.appendChild(createFormItem("Pages", "number", "pages"));
 
-    // Input text upon editing
-    if (editItem) {
-        const titleInput = form.querySelector('input[name="title"]');
-        const authorInput = form.querySelector('input[name="author"]');
-        const pagesInput = form.querySelector('input[name="pages"]');
-        const readInput = form.querySelector('input[name="isRead"]');
-
-
-        titleInput.value = editItem.querySelector(".book-title").textContent
-        authorInput.value = editItem.querySelector(".book-author").textContent
-        pagesInput.value = editItem.querySelector(".book-pages").textContent
-        readInput.checked = editItem.dataset.isRead === "true";
-    }
-
     // isRead checkbox
     const readWrapper = document.createElement("div");
     readWrapper.className = "form-item";
@@ -88,6 +74,19 @@ function createForm(editItem) {
 
     readWrapper.append(readLabel, readCheckbox);
     form.appendChild(readWrapper);
+
+    // Input text upon editing
+    if (editItem) {
+        const titleInput = form.querySelector('input[name="title"]');
+        const authorInput = form.querySelector('input[name="author"]');
+        const pagesInput = form.querySelector('input[name="pages"]');
+        const readInput = form.querySelector('input[name="isRead"]');
+
+        titleInput.value = editItem.querySelector(".book-title").textContent
+        authorInput.value = editItem.querySelector(".book-author").textContent
+        pagesInput.value = editItem.querySelector(".book-pages").textContent
+        readInput.checked = editItem.dataset.isRead === "true";
+    }
 
     // Button
     const button = document.createElement("button");
@@ -140,7 +139,7 @@ function addBookToLibrary(book) {
 
 // create function to remove book from library on click
 function removeBookFromLibrary(book) {
-    myLibrary =  myLibrary.filter((item) => item.id !== book.id)
+    myLibrary = myLibrary.filter((item) => item.id !== book.id)
 }
 
 // create function that loops through library array and creates 
@@ -190,7 +189,7 @@ function displayBooks(booksArray) {
 
 
         // event listener for the remove button on each book
-        removeButton.addEventListener("click", function(e){
+        removeButton.addEventListener("click", function (e) {
             e.preventDefault();
 
             const form = document.querySelector("form");
@@ -203,7 +202,7 @@ function displayBooks(booksArray) {
         })
 
         // event listener for the edit button on each book
-        editButton.addEventListener("click", function(e) {
+        editButton.addEventListener("click", function (e) {
             e.preventDefault();
 
             const form = document.querySelector("form");
