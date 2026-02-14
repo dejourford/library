@@ -151,6 +151,12 @@ function createForm(editItem) {
         const input = document.createElement("input");
         input.name = placeholder;
         input.type = type;
+        if (input.type !== "checkbox") {
+            input.required = true;
+            label.textContent = "*" + labelText;
+        }
+
+        input.placholder = placeholder;
         input.placeholder = placeholder;
 
         wrapper.append(label, input)
